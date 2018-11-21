@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
 class Vertex {
     Color color;
@@ -6,4 +7,11 @@ class Vertex {
     int d;
     int f;
     ArrayList<Vertex> adj;
+
+    public static class FinishTimeComparator implements Comparator<Vertex> {
+        @Override
+        public int compare(Vertex o1, Vertex o2) {
+            return o1.f - o2.f;
+        }
+    }
 }

@@ -1,10 +1,34 @@
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
     }
 
-    void DFS(Graph G) {
+
+    private void relax(Vertex u, Vertex v, Vertex w) {
+
+    }
+
+    private void initializeSingleSource(@NotNull Graph G, Vertex s) {
+        for (Vertex v : G.vertices) {
+            v.d = Integer.MAX_VALUE;
+            v.pi = null;
+        }
+        s.d = 0;
+    }
+
+    ArrayList<Vertex> topologicalSort(Graph G) {
+        DFS(G);
+        ArrayList<Vertex> sortedV = new ArrayList<>(G.vertices);
+        sortedV.sort(new Vertex.FinishTimeComparator());
+        return sortedV;
+    }
+
+    private void DFS(@NotNull Graph G) {
         for (Vertex u : G.vertices) {
             u.color = Color.WHITE;
             u.pi = null;
@@ -15,7 +39,7 @@ public class Main {
                 DFSVisit(G, u, time);
     }
 
-    void DFSVisit(Graph G, Vertex u, int time) {
+    private void DFSVisit(Graph G, @NotNull Vertex u, int time) {
         time++;
         u.d = time;
         u.color = Color.GREY;
