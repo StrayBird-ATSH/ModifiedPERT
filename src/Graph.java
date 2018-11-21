@@ -1,8 +1,7 @@
-import java.util.ArrayList;
-
 class Graph {
-    ArrayList<Vertex> vertices = new ArrayList<>();
+    Vertex[] vertices;
 
-    public Graph() {
+    Graph(int vertexNumber) {
+        vertices = new Vertex[vertexNumber];
     }
 }

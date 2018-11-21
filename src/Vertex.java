@@ -7,6 +7,7 @@ class Vertex {
     int d;
     int f;
     ArrayList<Vertex> adj;
+    int weight;
 
     public static class FinishTimeComparator implements Comparator<Vertex> {
         @Override
