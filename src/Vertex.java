@@ -9,6 +9,10 @@ class Vertex {
     ArrayList<Vertex> adj;
     int weight;
 
+    Vertex() {
+        adj = new ArrayList<>();
+    }
+
     public static class FinishTimeComparator implements Comparator<Vertex> {
         @Override
         public int compare(Vertex o1, Vertex o2) {

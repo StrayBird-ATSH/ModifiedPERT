@@ -8,6 +8,8 @@ class Graph {
 
     Graph(int vertexNumber) {
         vertices = new Vertex[vertexNumber];
+        for (int i = 0; i < vertexNumber; i++)
+            vertices[i] = new Vertex();
     }
 
     void PERT() {
@@ -34,7 +36,7 @@ class Graph {
 
     private ArrayList<Vertex> topologicalSort() {
         DFS();
-        ArrayList<Vertex> sortedV = (ArrayList<Vertex>) Arrays.asList(vertices);
+        ArrayList<Vertex> sortedV = new ArrayList<>(Arrays.asList(vertices));
         sortedV.sort(new Vertex.FinishTimeComparator());
         return sortedV;
     }
@@ -55,9 +57,9 @@ class Graph {
         u.d = time;
         u.color = Color.GREY;
         for (Vertex v : u.adj)
-            if (v.color.equals(Color.WHITE)) {
+            if (v.color == Color.WHITE) {
                 v.pi = u;
-                DFSVisit(u, time);
+                DFSVisit(v, time);
             }
         u.color = Color.BLACK;
         time++;
