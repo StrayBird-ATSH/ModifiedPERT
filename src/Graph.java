@@ -1,15 +1,15 @@
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 class Graph {
-    Vertex[] vertices;
+    ArrayList<Vertex> vertices;
+    private int time = 0;
 
     Graph(int vertexNumber) {
-        vertices = new Vertex[vertexNumber];
+        vertices = new ArrayList<>(vertexNumber);
         for (int i = 0; i < vertexNumber; i++)
-            vertices[i] = new Vertex();
+            vertices.add(new Vertex());
     }
 
     void PERT() {
@@ -36,7 +36,7 @@ class Graph {
 
     private ArrayList<Vertex> topologicalSort() {
         DFS();
-        ArrayList<Vertex> sortedV = new ArrayList<>(Arrays.asList(vertices));
+        ArrayList<Vertex> sortedV = new ArrayList<>(vertices);
         sortedV.sort(new Vertex.FinishTimeComparator());
         return sortedV;
     }
@@ -46,20 +46,20 @@ class Graph {
             u.color = Color.WHITE;
             u.pi = null;
         }
-        int time = 0;
+        time = 0;
         for (Vertex u : vertices)
             if (u.color.equals(Color.WHITE))
-                DFSVisit(u, time);
+                DFSVisit(u);
     }
 
-    private void DFSVisit(@NotNull Vertex u, int time) {
+    private void DFSVisit(@NotNull Vertex u) {
         time++;
         u.d = time;
         u.color = Color.GREY;
         for (Vertex v : u.adj)
             if (v.color == Color.WHITE) {
                 v.pi = u;
-                DFSVisit(v, time);
+                DFSVisit(v);
             }
         u.color = Color.BLACK;
         time++;

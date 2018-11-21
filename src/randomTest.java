@@ -5,8 +5,8 @@ public class randomTest {
     public static void main(String[] args) throws Exception {
         File file = new File("input.txt");
         FileWriter fileWriter = new FileWriter(file);
-        int n = 100000;
-        int m = 20000;
+        int n = 1000000;
+        int m = 1000000;
         fileWriter.write(n + " " + m + "\n");
         for (int i = 1; i <= m; i++) {
             int x = (int) (Math.random() * n) + 1;

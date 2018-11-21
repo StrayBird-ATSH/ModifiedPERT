@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\zhang\\IdeaProjects\\ModifiedPERT\\input.txt");
+        File file = new File("input.txt");
         Scanner input;
         try {
             input = new Scanner(file);
@@ -13,14 +13,13 @@ public class Main {
             input.nextLine();
             Graph graph = new Graph(m);
             for (int i = 0; i < n; i++) {
-                String edge = input.nextLine();
-                int startEdge = Integer.parseInt(edge.split(" ")[0]) - 1;
-                int finishEdge = Integer.parseInt(edge.split(" ")[1]) - 1;
-                graph.vertices[startEdge].adj.add(graph.vertices[finishEdge]);
+                int startEdge = input.nextInt() - 1;
+                int finishEdge = input.nextInt() - 1;
+                graph.vertices.get(startEdge).adj.add(graph.vertices.get(finishEdge));
+                input.nextLine();
             }
-            String weight = input.nextLine();
             for (int i = 0; i < m; i++)
-                graph.vertices[i].weight = Integer.parseInt(weight.split(" ")[i]);
+                graph.vertices.get(i).weight = input.nextInt();
             long time = System.currentTimeMillis();
             graph.PERT();
             System.out.println("The time is " + (System.currentTimeMillis() - time));
